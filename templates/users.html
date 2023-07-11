@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User List</title>
+</head>
+<body>
+    <h1>User List</h1>
+    <ul>
+    {% for user in users %}
+    <li>{{ user['name'] }} - {{ user['email'] }}</li>
+    {% endfor %}
+    </ul>
+    <h2>Add a User</h2>
+    <form method="POST" action="/add_user">
+        <input type="text" name="name" placeholder="Name">
+        <input type="email" name="email" placeholder="Email">
+        <button type="submit">Add User</button>
+    </form>
+</body>
+</html>

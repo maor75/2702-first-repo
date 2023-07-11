@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 style="color:blue;" >Send Message To Discord</h1>
+    <form id="inputForm">
+        <input type="text" id="messageInput" placeholder="Enter your message">
+        <button style="background-color:green;" type="submit">Send to Discord</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            $('#inputForm').submit(function(event) {
+                event.preventDefault();
+                var message = $('#messageInput').val();
+                var webhookURL = "https://discord.com/api/webhooks/1128253115590770718/O_LB62rGTxm6hGwYe_GRX2_glWzuyFjWmXwWjWlcVPkNaSyT-oqOBlHW30DSZViY1Hwd";
+                var payload = {
+                    content: message
+                };
+                $.ajax({
+                    url: webhookURL,
+                    type: 'POST',
+                    data: JSON.stringify(payload),
+                    contentType: 'application/json',
+                    success: function() {
+                        alert('Message sent to Discord successfully!');
+                        $('#messageInput').val('');
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Failed to send message to Discord: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
